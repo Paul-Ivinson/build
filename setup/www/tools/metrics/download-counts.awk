@@ -8,8 +8,6 @@ BEGIN {
   printf fmt, "ip", "day", "path", "version", "os", "arch", "bytes"
 }
 
-#{print $0}
-
 (!($6 == "\"GET" || $6 == "GET")) { next } # non-GET requests
 
 ($10 < 1000) { next } # unreasonably small download
@@ -86,10 +84,10 @@ BEGIN {
       arch = "armv7l"
     } else if (index(fileType, "arm64") > 0) {
       arch = "arm64"
-    } else if (index(fileType, "ppc64") > 0) {
-      arch = "ppc64"
     } else if (index(fileType, "ppc64le") > 0) {
       arch = "ppc64le"
+    } else if (index(fileType, "ppc64") > 0) {
+      arch = "ppc64"
     } else if (index(fileType, "s390x") > 0) {
       arch = "s390x"
     } else if (os == "win") {
